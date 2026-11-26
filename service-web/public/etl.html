@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>IPDS Smart Portal — BPS Provinsi Sulawesi Tengah</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.bg-grid-dots{background-image:radial-gradient(rgba(115,118,134,0.18) 1px,transparent 1px);background-size:16px 16px;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "surface": "#f8f9ff", "on-error-container": "#93000a", "on-primary-fixed-variant": "#003ea8", "on-surface-variant": "#434655", "primary": "#004ac6", "surface-container-high": "#dce9ff", "on-secondary": "#ffffff", "error": "#ba1a1a", "background": "#f8f9ff", "on-tertiary-container": "#bdffdc", "on-tertiary-fixed": "#002114", "primary-fixed": "#dbe1ff", "secondary": "#565e74", "on-secondary-fixed-variant": "#3f465c", "surface-container-low": "#eff4ff", "on-secondary-container": "#5c647a", "surface-container-highest": "#d3e4fe", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "outline": "#737686", "surface-tint": "#0053db", "secondary-fixed": "#dae2fd", "secondary-fixed-dim": "#bec6e0", "surface-bright": "#f8f9ff", "on-primary-fixed": "#00174b", "on-error": "#ffffff", "tertiary-container": "#007d57", "tertiary-fixed-dim": "#68dba9", "on-secondary-fixed": "#131b2e", "on-tertiary": "#ffffff", "inverse-surface": "#213145", "surface-dim": "#cbdbf5", "secondary-container": "#dae2fd", "tertiary": "#006243", "on-tertiary-fixed-variant": "#005137", "surface-container": "#e5eeff", "on-surface": "#0b1c30", "surface-variant": "#d3e4fe", "primary-container": "#2563eb", "on-primary-container": "#eeefff", "inverse-primary": "#b4c5ff", "on-background": "#0b1c30", "primary-fixed-dim": "#b4c5ff", "outline-variant": "#c3c6d7", "tertiary-fixed": "#85f8c4" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-xl": "2rem", "space-sm": "0.5rem", "margin": "1.5rem", "space-md": "0.75rem" }, "fontFamily": { "headline-md": ["Geist"], "body-sm": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Geist"], "headline-xl": ["Geist"], "label-mono-sm": ["JetBrains Mono"], "label-mono-lg": ["JetBrains Mono"], "headline-xl-mobile": ["Geist"], "label-mono-md": ["JetBrains Mono"], "headline-sm": ["Geist"], "body-lg": ["Geist"] }, "fontSize": { "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "400" }], "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "label-mono-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.03em", "fontWeight": "500" }], "label-mono-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-mono-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-sm": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface bg-grid-dots min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-sm select-none">ST</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none tracking-tight">IPDS Smart Portal</span><span class="font-label-mono-sm text-label-mono-sm text-secondary uppercase tracking-widest mt-0.5">BPS PROV. SULAWESI TENGAH</span></div></div><div class="hidden md:flex items-center justify-center"><nav class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded-lg" data-active-classes="bg-surface-container-high text-on-surface font-headline-sm rounded-lg"><a class="font-body-md text-body-md px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors rounded-lg" data-path="portal-link" href="#">Portal Link</a><a class="font-body-md text-body-md px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors rounded-lg" data-path="etl-data-warehouse" href="#">ETL Data Warehouse</a><a class="font-body-md text-body-md px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors rounded-lg" data-path="analytics-and-ai" href="#">Analytics &amp; AI</a></nav></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span><span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">Online SIKD Sync</span></div><a class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary font-body-sm text-body-sm transition-colors shadow-sm" data-path="admin-login" href="#"><span class="material-symbols-outlined text-[16px]">lock</span><span class="hidden lg:inline">Admin Login</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 flex-1"><div class="flex flex-col w-full">
+<div class="w-full px-margin py-space-lg flex flex-col gap-space-lg max-w-[1536px] mx-auto">
+<!-- Top Context & Linear Sub-Header Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs text-secondary font-label-mono-sm">
+<span class="hover:text-on-surface cursor-pointer transition-colors">IPDS Smart Portal</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium">ETL Data Warehouse &amp; Ingestion</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-0.5">
+          Pipeline ETL &amp; Sinkronisasi Star Schema
+        </h1>
+<p class="font-body-md text-body-md text-secondary">
+          Automated ingestion pipeline untuk harmonisasi dataset sektoral Sulawesi Tengah ke PostgreSQL Data Warehouse.
+        </p>
+</div>
+<!-- Engine & Target Badges -->
+<div class="flex flex-wrap items-center gap-space-xs shrink-0 self-start lg:self-auto">
+<div class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-mono-sm text-secondary">Engine:</span>
+<span class="font-label-mono-sm text-on-surface font-semibold">Python FastAPI + Pandas</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">database</span>
+<span class="font-label-mono-sm text-secondary">Target:</span>
+<span class="font-label-mono-sm text-on-surface font-semibold">PostgreSQL Sulteng :5432</span>
+</div>
+</div>
+</div>
+<!-- Active Navigation Indicator Sync (Linear subtle pill) -->
+<div class="flex items-center gap-space-xs -mt-space-sm pb-space-xs">
+<span class="font-label-mono-sm px-2 py-0.5 rounded bg-primary-container text-on-primary font-medium flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-inverse-on-surface"></span>
+        Modul Aktif: Ingestor v2.4 (Worker #01)
+      </span>
+<span class="font-label-mono-sm text-secondary px-2 py-0.5 rounded bg-surface-container-low">
+        Memory Limit: 8192 MB (Polars JIT)
+      </span>
+</div>
+<!-- Top Row: 2-Column Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Card 1: Upload Dataset Excel Wilayah (7 cols on lg) -->
+<div class="lg:col-span-6 xl:col-span-7 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between">
+<div>
+<!-- Header -->
+<div class="flex items-start justify-between gap-space-md pb-space-md mb-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">table_chart</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">
+                  Unggah Dataset Excel Wilayah (Sulawesi Tengah Dalam Angka)
+                </h2>
+<p class="font-body-sm text-body-sm text-secondary">
+                  Dukungan multi-sheet .xlsx, .xls, .csv dengan deteksi otomatis header hirarki
+                </p>
+</div>
+</div>
+<span class="font-label-mono-sm px-2 py-1 rounded bg-surface-container-low text-secondary shrink-0">
+              MIME: XLSX/CSV
+            </span>
+</div>
+<!-- Dropzone -->
+<div class="rounded-lg p-space-lg flex flex-col items-center justify-center text-center cursor-pointer transition-all bg-surface-container-low/60 hover:bg-surface-container-high/40 group" id="dropzone">
+<div class="w-11 h-11 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center text-primary group-hover:scale-105 transition-transform mb-space-sm">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface mb-0.5">
+              Tarik &amp; lepas file Excel agregat kabupaten/kota di sini
+            </p>
+<p class="font-body-sm text-body-sm text-secondary mb-space-xs">
+              atau klik untuk memilih file dari repositori lokal
+            </p>
+<span class="font-label-mono-sm text-secondary">
+              Maksimum 50 MB per berkas • Parsing otomatis schema 13 Kab/Kota
+            </span>
+</div>
+<!-- Uploaded File Chips List -->
+<div class="mt-space-md flex flex-col gap-space-xs">
+<div class="text-secondary font-label-mono-sm uppercase tracking-wider mb-1 flex items-center justify-between">
+<span>Berkas Terverifikasi Dalam Antrean (3 File)</span>
+<span class="text-tertiary">3 / 3 Berkas Valid</span>
+</div>
+<!-- Item 1 -->
+<div class="flex items-center justify-between px-space-md py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-on-surface font-semibold truncate">Kemiskinan_Sulteng_2023.xlsx</span>
+<span class="font-label-mono-sm text-secondary text-[10px]">1.8 MB · 13 Kab/Kota · 13 Sheet · Hash: 9d1b</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-mono-sm text-[10px] px-2 py-0.5 rounded bg-tertiary-fixed-dim/40 text-on-tertiary-fixed-variant flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[12px] text-tertiary font-bold">check</span>
+                  Siap Diproses
+                </span>
+<button class="text-secondary hover:text-error transition-colors p-1" title="Hapus Berkas">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between px-space-md py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-on-surface font-semibold truncate">Kemiskinan_Sulteng_2024.xlsx</span>
+<span class="font-label-mono-sm text-secondary text-[10px]">2.1 MB · 13 Kab/Kota · 13 Sheet · Hash: ec44</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-mono-sm text-[10px] px-2 py-0.5 rounded bg-tertiary-fixed-dim/40 text-on-tertiary-fixed-variant flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[12px] text-tertiary font-bold">check</span>
+                  Siap Diproses
+                </span>
+<button class="text-secondary hover:text-error transition-colors p-1" title="Hapus Berkas">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between px-space-md py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-on-surface font-semibold truncate">Kemiskinan_Sulteng_2025.xlsx</span>
+<span class="font-label-mono-sm text-secondary text-[10px]">2.4 MB · 13 Kab/Kota · 13 Sheet · Hash: 7fa0</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-mono-sm text-[10px] px-2 py-0.5 rounded bg-tertiary-fixed-dim/40 text-on-tertiary-fixed-variant flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[12px] text-tertiary font-bold">check</span>
+                  Siap Diproses
+                </span>
+<button class="text-secondary hover:text-error transition-colors p-1" title="Hapus Berkas">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-space-lg pt-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-lg py-2 rounded-lg bg-primary-container text-on-primary hover:bg-primary font-headline-sm text-body-sm transition-all shadow-md active:scale-95" id="runPipelineBtn">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Jalankan Pipeline ETL</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-body-sm text-body-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Konfigurasi Mapping</span>
+</button>
+</div>
+<button class="text-secondary hover:text-on-surface font-body-sm text-body-sm px-space-sm py-2">
+            Reset Antrean
+          </button>
+</div>
+</div>
+<!-- Card 2: Status Pipeline & Eksekusi Transformasi (5 cols on lg) -->
+<div class="lg:col-span-6 xl:col-span-5 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between">
+<div>
+<!-- Header with pulse status badge -->
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">
+                Status Pipeline &amp; Eksekusi
+              </h2>
+</div>
+<div class="flex items-center gap-1.5 px-space-md py-1 rounded bg-tertiary-fixed-dim/30 text-on-tertiary-fixed font-label-mono-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span class="font-medium">3/3 Tahap Selesai</span>
+</div>
+</div>
+<!-- 3-Step Connected Stepper Flow -->
+<div class="relative flex flex-col gap-space-md pl-2 my-space-sm">
+<!-- Connecting vertical line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-[2px] bg-tertiary-fixed-dim"></div>
+<!-- Step 1 -->
+<div class="relative flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0 z-10 shadow-sm">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low/70 rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between gap-space-sm mb-0.5">
+<h3 class="font-headline-sm text-body-lg text-on-surface font-semibold">1. Extract Multi-Excel</h3>
+<span class="font-label-mono-sm text-[10px] text-tertiary font-medium bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-sm">
+                    Completed (142ms)
+                  </span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-snug">
+                  Ekstraksi 3 file workbook, pembacaan 39 sheet data tabular, kalkulasi checksum SHA-256 berkas.
+                </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0 z-10 shadow-sm">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low/70 rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between gap-space-sm mb-0.5">
+<h3 class="font-headline-sm text-body-lg text-on-surface font-semibold">2. Transform &amp; Standarisasi</h3>
+<span class="font-label-mono-sm text-[10px] text-tertiary font-medium bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-sm">
+                    Completed (280ms)
+                  </span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-snug">
+                  Normalisasi penamaan kode BPS wilayah 72.xx, pembersihan whitespace, koreksi typo, dan imputasi nilai kosong.
+                </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0 z-10 shadow-sm">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low/70 rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between gap-space-sm mb-0.5">
+<h3 class="font-headline-sm text-body-lg text-on-surface font-semibold">3. Load ke Star Schema</h3>
+<span class="font-label-mono-sm text-[10px] text-tertiary font-medium bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-sm">
+                    Completed (95ms)
+                  </span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-snug">
+                  Upsert otomatis ke tabel fakta &amp; verifikasi referensial foreign key dimensi wilayah dan waktu rilis.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Monospace Dimension Metrics -->
+<div class="mt-space-lg grid grid-cols-3 gap-space-sm">
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between">
+<span class="font-label-mono-sm text-[10px] text-secondary">dim_wilayah</span>
+<div class="font-headline-md text-headline-sm text-on-surface my-0.5">13 Kab/Kota</div>
+<span class="font-label-mono-sm text-[9px] text-tertiary font-semibold flex items-center gap-0.5">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span> Sinkron 100%
+            </span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between">
+<span class="font-label-mono-sm text-[10px] text-secondary">dim_tahun</span>
+<div class="font-headline-md text-headline-sm text-on-surface my-0.5">2020–2026</div>
+<span class="font-label-mono-sm text-[9px] text-primary font-semibold">7 Periode Rilis</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between">
+<span class="font-label-mono-sm text-[10px] text-secondary">fakta_indikator</span>
+<div class="font-headline-md text-headline-sm text-on-surface my-0.5">195 Baris</div>
+<span class="font-label-mono-sm text-[9px] text-tertiary font-semibold flex items-center gap-0.5">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span> 0 Duplikasi
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Audit Kualitas Data (Full Width Bento Card) -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm flex flex-col overflow-hidden">
+<!-- Card Sub-bar Header & Controls -->
+<div class="p-space-lg pb-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">fact_check</span>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+              Audit Kualitas Data (Sebelum vs Sesudah Pembersihan)
+            </h2>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Verifikasi log pemetaan string mentah dari survei/DDA terhadap master kode referensi wilayah BPS Sulteng.
+          </p>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Search input -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-[16px] text-secondary">search</span>
+<input class="pl-8 pr-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container placeholder:text-outline-variant w-48 sm:w-60 shadow-inner" id="searchInput" placeholder="Cari wilayah atau file..." type="text"/>
+</div>
+<!-- Status Dropdown -->
+<div class="relative">
+<select class="px-space-md py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer appearance-none pr-8">
+<option value="all">Semua Status (Valid)</option>
+<option value="corrected">Terkoreksi Otomatis</option>
+<option value="exact">Sesuai Baku</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[14px] text-secondary pointer-events-none">expand_more</span>
+</div>
+<!-- Export Button -->
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-sm text-body-sm transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">download</span>
+<span class="hidden sm:inline">Unduh Log Audit (CSV)</span>
+</button>
+</div>
+</div>
+<!-- Tabular Data View -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-mono-sm text-label-mono-sm uppercase tracking-wider">
+<th class="px-space-lg py-2.5 font-medium">File Sumber</th>
+<th class="px-space-md py-2.5 font-medium text-center">Kode BPS</th>
+<th class="px-space-md py-2.5 font-medium">Nama Wilayah Mentah</th>
+<th class="px-space-md py-2.5 font-medium">Nama Standar Database</th>
+<th class="px-space-md py-2.5 font-medium text-right">Nilai Indikator (Persentase %)</th>
+<th class="px-space-lg py-2.5 font-medium text-center">Status Pembersihan</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface" id="auditTableBody">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2024.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.01</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-error bg-error-container/50 px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">space_bar</span>
+                  "Kab. Banggai Kepulauan "
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Banggai Kepulauan (72.01)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                12.85%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2024.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.08</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">format_size</span>
+                  "PARIGI MOUTONG"
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Parigi Moutong (72.08)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                14.20%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2024.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.71</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-error bg-error-container/50 px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">label_off</span>
+                  "Kota Palu (Prov)"
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Kota Palu (72.71)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                6.52%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2023.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.12</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">edit_note</span>
+                  "Kab. Morowali Utara"
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Morowali Utara (72.12)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                11.90%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2023.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.04</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-error bg-error-container/50 px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">spellcheck</span>
+                  "Toli-toli"
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Tolitoli (72.04)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                12.15%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="px-space-lg py-2.5 font-label-mono-sm text-secondary whitespace-nowrap">
+                Kemiskinan_Sulteng_2025.xlsx
+              </td>
+<td class="px-space-md py-2.5 text-center">
+<span class="font-label-mono-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">72.05</span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-label-mono-sm text-error bg-error-container/50 px-2 py-0.5 rounded flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">space_bar</span>
+                  "Buol  "
+                </span>
+</td>
+<td class="px-space-md py-2.5">
+<span class="font-headline-sm text-body-md text-on-surface flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
+                  Buol (72.05)
+                </span>
+</td>
+<td class="px-space-md py-2.5 text-right font-label-mono-lg font-semibold text-primary">
+                13.40%
+              </td>
+<td class="px-space-lg py-2.5 text-center">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed-dim/40 text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] text-tertiary">verified</span>
+                  Valid
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Telemetry Bar -->
+<div class="px-space-lg py-3 bg-surface-container-low/50 flex flex-col sm:flex-row items-center justify-between gap-space-sm text-secondary font-label-mono-sm text-[11px]">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>Menampilkan 6 dari 39 baris audit terkoreksi</span>
+<span class="text-outline-variant">·</span>
+<span class="text-tertiary font-medium">0 Kesalahan Validasi</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span>Waktu Eksekusi Terakhir: <strong class="text-on-surface font-medium">Hari ini, 10:42 WITA</strong></span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface" title="Halaman Sebelumnya">
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+</button>
+<span class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface font-semibold shadow-sm">1</span>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface" title="Halaman Berikutnya">
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Ensure the App Shell top navigation indicates "ETL Data Warehouse" as active
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll('header nav a');
+    navLinks.forEach(link => {
+      const path = link.getAttribute('data-path');
+      if (path === 'etl-data-warehouse') {
+        link.className = "font-headline-sm text-body-md px-space-md py-space-xs bg-primary text-on-primary rounded-lg transition-colors shadow-sm";
+      } else {
+        link.className = "font-body-md text-body-md px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors rounded-lg";
+      }
+    });
+
+    // Quick client-side filter for the audit table
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('auditTableBody');
+    if (searchInput && tableBody) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    }
+
+    // Run Pipeline simulation feedback
+    const runBtn = document.getElementById('runPipelineBtn');
+    if (runBtn) {
+      runBtn.addEventListener('click', () => {
+        const originalText = runBtn.innerHTML;
+        runBtn.disabled = true;
+        runBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[18px] animate-spin">refresh</span>
+          <span>Menjalankan Pipeline...</span>
+        `;
+        setTimeout(() => {
+          runBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px] text-tertiary-fixed">done_all</span>
+            <span>Sinkronisasi Sukses (517ms)</span>
+          `;
+          setTimeout(() => {
+            runBtn.innerHTML = originalText;
+            runBtn.disabled = false;
+          }, 2400);
+        }, 1200);
+      });
+    }
+  });
+</script></main><footer class="w-full bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)] py-space-md mt-space-xl"><div class="w-full px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-body-sm text-body-sm text-on-surface-variant">Sistem Informasi Statistik Daerah</span><span class="text-outline-variant font-label-mono-sm">·</span><span class="font-label-mono-sm text-label-mono-sm text-secondary bg-surface-container-low px-space-xs py-0.5 rounded">v2.4 LTS</span><span class="text-outline-variant font-label-mono-sm">·</span><span class="font-label-mono-sm text-label-mono-sm text-tertiary bg-surface-container-low px-space-xs py-0.5 rounded flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>Realtime API</span></div><div class="font-label-mono-sm text-label-mono-sm text-secondary">© 2026 Badan Pusat Statistik Provinsi Sulawesi Tengah</div></div></footer>
+<script src="/app.js"></script></body></html>

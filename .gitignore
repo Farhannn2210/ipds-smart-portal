@@ -1,0 +1,25 @@
+# Rahasia & Environment Variables (JANGAN PERNAH DI-UPLOAD)
+.env
+.env.*
+!.env.example
+service-web/.env
+service-python/.env
+
+# Dependensi Node.js & Build
+node_modules/
+npm-debug.log*
+.next/
+dist/
+
+# Virtual Environment & Cache Python
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# File Sistem & Editor
+.DS_Store
+Thumbs.db
+.vscode/
