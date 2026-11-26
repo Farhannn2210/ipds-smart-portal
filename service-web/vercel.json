@@ -1,14 +1,13 @@
 {
   "version": 2,
   "builds": [
-    { "src": "service-analytics/main.py", "use": "@vercel/python" },
-    { "src": "service-web/server.js", "use": "@vercel/node" }
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "public/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/etl/(.*)", "dest": "service-analytics/main.py" },
-    { "src": "/api/analytics/(.*)", "dest": "service-analytics/main.py" },
-    { "src": "/api/v1/etl/(.*)", "dest": "service-analytics/main.py" },
-    { "src": "/api/v1/analytics/(.*)", "dest": "service-analytics/main.py" },
-    { "src": "/(.*)", "dest": "service-web/server.js" }
+    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "src": "/etl", "dest": "/public/etl.html" },
+    { "src": "/analytics", "dest": "/public/analytics.html" },
+    { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
