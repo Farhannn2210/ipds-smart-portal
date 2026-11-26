@@ -10,12 +10,10 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from psycopg2.extras import RealDictCursor
-from sklearn.cluster import KMeans
-from sklearn.linear_model import Ridge
 
 load_dotenv()
 
-app = FastAPI(title="IPDS Smart Portal - ETL & AI Engine", version="2.7.0")
+app = FastAPI(title="IPDS Smart Portal - ETL & AI Engine", version="2.8.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -53,10 +51,45 @@ IGNORE_KEYWORDS = [
 ]
 
 
+def kmeans_1d(arr: np.ndarray, k: int = 3, max_iter: int = 100) -> List[int]:
+    arr = np.asarray(arr, dtype=float).flatten()
+    if len(arr) < 2 or k < 2:
+        return [0 for _ in range(len(arr))]
+    centers = np.quantile(arr, np.linspace(0.15, 0.85, k))
+    labels = np.zeros(len(arr), dtype=int)
+    for _ in range(max_iter):
+        dists = np.abs(arr[:, None] - centers[None, :])
+        labels = np.argmin(dists, axis=1)
+        new_centers = np.array(
+            [arr[labels == j].mean() if np.any(labels == j) else centers[j] for j in range(k)]
+        )
+        if np.allclose(centers, new_centers):
+            break
+        centers = new_centers
+    order = np.argsort(centers)
+    rank_map = {orig: rank for rank, orig in enumerate(order)}
+    return [int(rank_map[lbl]) for lbl in labels]
+
+
+def ridge_predict_1d(x_vals: np.ndarray, y_vals: np.ndarray, target_x: float, alpha: float = 1.0) -> float:
+    x = np.asarray(x_vals, dtype=float).flatten()
+    y = np.asarray(y_vals, dtype=float).flatten()
+    if len(x) < 2:
+        return float(y[0])
+    x_mean = x.mean()
+    y_mean = y.mean()
+    xc = x - x_mean
+    yc = y - y_mean
+    denom = float(np.sum(xc ** 2) + alpha)
+    slope = float(np.sum(xc * yc)) / denom if denom != 0 else 0.0
+    intercept = float(y_mean - slope * x_mean)
+    return float(intercept + slope * target_x)
+
+
 def get_db_connection():
     db_url = os.getenv("DATABASE_URL")
     if not db_url:
-        raise RuntimeError("DATABASE_URL belum diatur di file .env")
+        raise RuntimeError("DATABASE_URL belum diatur di Environment Variables")
     if "supabase.co" in db_url and "sslmode=" not in db_url:
         sep = "&" if "?" in db_url else "?"
         db_url = f"{db_url}{sep}sslmode=require"
@@ -141,8 +174,6 @@ def ensure_schema(conn):
             ADD COLUMN IF NOT EXISTS tahun INT DEFAULT 2025;
             """
         )
-
-        # Deteksi otomatis nama kolom asli pada tabel dim_wilayah di Supabase
         wil_schema = get_table_schema(cur, "dim_wilayah")
         wil_name_col = pick_col(
             wil_schema,
@@ -159,7 +190,6 @@ def ensure_schema(conn):
             exclude={"id", "kode_bps", "created_at", "updated_at"},
             prefer_types=["char", "text"],
         )
-
         for kode, nama, _ in MASTER_WILAYAH:
             cur.execute("SELECT 1 FROM dim_wilayah WHERE kode_bps = %s;", (kode,))
             exists = cur.fetchone() is not None
@@ -180,31 +210,16 @@ def ensure_schema(conn):
     conn.commit()
 
 
-@app.on_event("startup")
-def on_startup():
-    try:
-        conn = get_db_connection()
-        try:
-            ensure_schema(conn)
-        finally:
-            conn.close()
-    except Exception as exc:
-        print(f"[PERINGATAN STARTUP DB] {exc}")
-
-
 def match_wilayah(cell_val: Any):
     if pd.isna(cell_val):
         return None
     raw = str(cell_val).strip()
     if not raw:
         return None
-
     norm = re.sub(r"[^a-z0-9.\-\s]", " ", raw.lower())
     norm = re.sub(r"\s+", " ", norm).strip()
-
     if any(ig == norm or (ig in norm and "72." not in norm) for ig in IGNORE_KEYWORDS):
         return None
-
     clean_name = re.sub(r"^(kabupaten|kab\.?|kota)\s+", "", norm).strip()
     for kode, standar, aliases in MASTER_WILAYAH:
         for alias in aliases:
@@ -218,11 +233,9 @@ def parse_numeric(val: Any) -> Optional[float]:
         return None
     if isinstance(val, (int, float)):
         return None if pd.isna(val) else float(val)
-
     s = str(val).strip()
     if s.lower() in ["", "-", "–", "—", "...", "na", "n/a", "null", "none"]:
         return None
-
     s = re.sub(r"[*%]", "", s).strip()
     if "," in s and "." in s:
         if s.rfind(",") > s.rfind("."):
@@ -231,7 +244,6 @@ def parse_numeric(val: Any) -> Optional[float]:
             s = s.replace(",", "")
     elif "," in s:
         s = s.replace(",", ".")
-
     try:
         return float(s)
     except ValueError:
@@ -249,7 +261,6 @@ def extract_year_from_text(val: Any) -> Optional[int]:
 def parse_bps_sheet(df_raw: pd.DataFrame, default_year: int) -> List[Dict[str, Any]]:
     if df_raw is None or df_raw.empty:
         return []
-
     header_idx = None
     for i in range(min(25, len(df_raw))):
         row_vals = [str(v).lower().strip() for v in df_raw.iloc[i].tolist() if pd.notna(v)]
@@ -258,17 +269,7 @@ def parse_bps_sheet(df_raw: pd.DataFrame, default_year: int) -> List[Dict[str, A
         joined = " ".join(row_vals)
         has_header_kw = any(
             k in joined
-            for k in [
-                "wilayah",
-                "kabupaten",
-                "kota",
-                "kode_bps",
-                "kode bps",
-                "daerah",
-                "tahun",
-                "nilai",
-                "indikator",
-            ]
+            for k in ["wilayah", "kabupaten", "kota", "kode_bps", "kode bps", "daerah", "tahun", "nilai", "indikator"]
         )
         year_count = sum(1 for v in row_vals if extract_year_from_text(v) is not None)
         if has_header_kw or year_count >= 2:
@@ -315,19 +316,7 @@ def parse_bps_sheet(df_raw: pd.DataFrame, default_year: int) -> List[Dict[str, A
             for c in df.columns
             if any(
                 k in str(c).lower()
-                for k in [
-                    "nilai",
-                    "value",
-                    "persentase",
-                    "persen",
-                    "angka",
-                    "indeks",
-                    "jumlah",
-                    "skor",
-                    "capaian",
-                    "realisasi",
-                    "data",
-                ]
+                for k in ["nilai", "value", "persentase", "persen", "angka", "indeks", "jumlah", "skor", "capaian", "realisasi", "data"]
             )
         ),
         None,
@@ -511,27 +500,17 @@ async def upload_etl_file(
                 ind_val = indikator_id if f_ind_col == "indikator_id" else indikator_clean
 
                 cur.execute(
-                    f"""
-                    SELECT 1 FROM fakta_indikator
-                    WHERE {f_ind_col} = %s AND {f_wil_col} = %s AND {f_thn_col} = %s;
-                    """,
+                    f"SELECT 1 FROM fakta_indikator WHERE {f_ind_col} = %s AND {f_wil_col} = %s AND {f_thn_col} = %s;",
                     (ind_val, wil_val, thn_val),
                 )
                 if cur.fetchone():
                     cur.execute(
-                        f"""
-                        UPDATE fakta_indikator
-                        SET {f_val_col} = %s
-                        WHERE {f_ind_col} = %s AND {f_wil_col} = %s AND {f_thn_col} = %s;
-                        """,
+                        f"UPDATE fakta_indikator SET {f_val_col} = %s WHERE {f_ind_col} = %s AND {f_wil_col} = %s AND {f_thn_col} = %s;",
                         (r["nilai"], ind_val, wil_val, thn_val),
                     )
                 else:
                     cur.execute(
-                        f"""
-                        INSERT INTO fakta_indikator ({f_ind_col}, {f_wil_col}, {f_thn_col}, {f_val_col})
-                        VALUES (%s, %s, %s, %s);
-                        """,
+                        f"INSERT INTO fakta_indikator ({f_ind_col}, {f_wil_col}, {f_thn_col}, {f_val_col}) VALUES (%s, %s, %s, %s);",
                         (ind_val, wil_val, thn_val, r["nilai"]),
                     )
 
@@ -541,15 +520,7 @@ async def upload_etl_file(
                         (file_sumber, indikator, kode_bps, nama_mentah, nama_standar, tahun, nilai, status)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, 'Valid');
                     """,
-                    (
-                        filename,
-                        indikator_clean,
-                        r["kode_bps"],
-                        r["nama_mentah"],
-                        r["nama_standar"],
-                        r["tahun"],
-                        r["nilai"],
-                    ),
+                    (filename, indikator_clean, r["kode_bps"], r["nama_mentah"], r["nama_standar"], r["tahun"], r["nilai"]),
                 )
         conn.commit()
     except Exception as exc:
@@ -682,7 +653,6 @@ def run_analytics(indikator: str = Query("Persentase Kemiskinan Makro")):
     if not rows:
         raise HTTPException(status_code=404, detail="Data fakta kosong untuk indikator ini.")
 
-    # Lengkapi nama standar jika tabel dim_wilayah tidak memiliki kolom nama
     kode_to_standar = {k: n for k, n, _ in MASTER_WILAYAH}
     for r in rows:
         if r["nama_wilayah"] in kode_to_standar:
@@ -692,17 +662,9 @@ def run_analytics(indikator: str = Query("Persentase Kemiskinan Makro")):
     tahun_terkini = int(df["tahun"].max())
     df_latest = df[df["tahun"] == tahun_terkini].sort_values("kode_bps").reset_index(drop=True)
 
-    vals = df_latest[["nilai"]].values
+    vals = df_latest["nilai"].values
     n_clusters = min(3, len(df_latest))
-    if n_clusters >= 2:
-        km = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
-        raw_labels = km.fit_predict(vals)
-        centers = km.cluster_centers_.flatten()
-        order = np.argsort(centers)
-        rank_map = {orig_idx: rank_idx for rank_idx, orig_idx in enumerate(order)}
-        mapped_clusters = [int(rank_map[lbl]) for lbl in raw_labels]
-    else:
-        mapped_clusters = [0 for _ in range(len(df_latest))]
+    mapped_clusters = kmeans_1d(vals, k=n_clusters)
 
     label_names = {
         0: "Klaster 1 (Rendah / Optimal)",
@@ -714,13 +676,7 @@ def run_analytics(indikator: str = Query("Persentase Kemiskinan Makro")):
     for idx, r in df_latest.iterrows():
         kode = r["kode_bps"]
         sub = df[df["kode_bps"] == kode].sort_values("tahun")
-        if len(sub) >= 2:
-            model = Ridge(alpha=1.0)
-            model.fit(sub[["tahun"]].values, sub["nilai"].values)
-            pred_2026 = float(model.predict(np.array([[2026]]))[0])
-        else:
-            pred_2026 = float(r["nilai"])
-
+        pred_2026 = ridge_predict_1d(sub["tahun"].values, sub["nilai"].values, 2026.0, alpha=1.0)
         cid = mapped_clusters[idx]
         wilayah_output.append(
             {
@@ -734,15 +690,12 @@ def run_analytics(indikator: str = Query("Persentase Kemiskinan Makro")):
         )
 
     prov_trend_df = df.groupby("tahun", as_index=False)["nilai"].mean().sort_values("tahun")
-    if len(prov_trend_df) >= 2:
-        prov_model = Ridge(alpha=1.0)
-        prov_model.fit(prov_trend_df[["tahun"]].values, prov_trend_df["nilai"].values)
-        pred_prov_2026 = round(float(prov_model.predict(np.array([[2026]]))[0]), 2)
-        pred_prov_2027 = round(float(prov_model.predict(np.array([[2027]]))[0]), 2)
-    else:
-        only_val = round(float(prov_trend_df["nilai"].iloc[0]), 2)
-        pred_prov_2026 = only_val
-        pred_prov_2027 = only_val
+    pred_prov_2026 = round(
+        ridge_predict_1d(prov_trend_df["tahun"].values, prov_trend_df["nilai"].values, 2026.0, alpha=1.0), 2
+    )
+    pred_prov_2027 = round(
+        ridge_predict_1d(prov_trend_df["tahun"].values, prov_trend_df["nilai"].values, 2027.0, alpha=1.0), 2
+    )
 
     trend_historis = [
         {"tahun": int(tr["tahun"]), "nilai": round(float(tr["nilai"]), 2), "is_forecast": False}
